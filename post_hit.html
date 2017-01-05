@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RichardYang - The Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Richard Yang - The Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Deep Learning X Hit Song Prediction</h1>
+                        <h2 class="subheading">Revisiting the problem of audio-based hit song prediction using convolutional neural networks, in ICASSP 2017.</h2>
+                        <span class="meta">Posted on January 05, 2017</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>Being able to predict whether a song can be a hit has important applications in the music industry. Knowing such information could help the musician to evaluate their work before publication, or maybe assist the company to decide their commercial strategy.</p>
+
+                    <p>The popularity of a song can be greatly affected by external factors such as social and commercial influences. To which degree audio features computed from musical signals can predict song popularity is an interesting research question on its own </p>
+                    <h2 class="section-heading">The Power of Deep</h2>
+
+                    <p>In this work, we tackle the question of audio-based hit song prediction with both traditional machine learning methods and several more advanced deep learning model. Moreover, we use the Mandarin and Western datasets of KKBOX to evaluate the models, in which we found some interesting results.</p>
+
+                    <p>Specifically, we experiment with a convolutional neural network model that takes the primitive mel-spectrogram as the input for feature learning, a more advanced <a target="_blank" href="http://clip2frame.ciaua.com">JYnet</a> model that uses an external song dataset for supervised pre-training and auto-tagging, and the combination of these two models.</p>
+
+                    <p>We also consider the inception model to characterize audio information in different scales. Our experiments suggest that deep structures are indeed more accurate than shallow structures in predicting the popularity of either Chinese or Western Pop songs in Taiwan.</p>
+
+                    <h2 class="section-heading">Dataset</h2>
+                    
+                    <p>Thanks to <a target="_blank" href="https://www.kkbox.com/tw/tc/index.html">KKBOX Inc.</a>, we obtain a subset of user listening records contributed by Taiwanese listeners over a time horizon of one year, from Oct. 2012 to Sep. 2013, involving the playcounts of close to 30K users for around 125K songs.</p>
+
+                    <p>The scale and the time span of the dataset are deemed appropriate for this study. Unlike previous work on musical trend analysis that may involve more than ten years’ worth of data, for the purpose of our work we want to avoid changes in public music tastes and therefore it is better to use listening records collected within a year. We define the hit score of a song according to the multiplication of its playcount in log scale and the number of users (also in log scale) who have listened to the song. We opt for not using the playcounts only to measure song popularity because it is possible that the playcount of a song is contributed by only a very small number of users. </p>
+
+                    <p>To make our experimental results on the two subsets comparable, we sample the same amount of 10K songs in our experiment for both subsets. These songs are those with the highest playcounts within the subset.</p>
+                    <a>
+                        <img class="img-responsive" src="img/ICASSP/fig1.png" alt="">
+                    </a>
+
+                    <h2 class="section-heading">Tech Time! The Methods</h2>
+
+                    
+
+                    <p>We formulate hit song prediction as a regression problem and train either shallow or deep neural network models for predicting the hit scores. Let's skip the details of the traditional methods(Linear Regression and CNN), and head straight to our main dish: inception CNN, and the hybrid joint training network.</p>
+
+                    <p>The audio version of Inception CNN:</p>
+                    <p>The idea of inception was introduced in <a target="_blank" href="https://www.cs.unc.edu/~wliu/papers/GoogLeNet.pdf">GoogLeNet</a> for visual problems. It uses multi-scale kernels to learn features. Since we use the mel-spectrograms directly as the input, which is a 128 by 646 matrix. We make an audio version of it by adding two more parallel early convolutional layers with different sizes: 132-by-8 and 140-by-16, as illustrated in (M3) of the structure figure below. To combine the output of these three kernels by concatenation, the input mel-spectrogram needs to be zero-padded.
+
+                    
+                    <p>The hybrid joint training network:</p>
+                    <p>We also try to combine the deep models with <a target="_blank" href="http://clip2frame.ciaua.com">JYnet</a>(M4), an advanced auto-tagging system to exploit information in both the mel-spectrograms and tags, leading to (M6) in the structure figure below. Instead of simply combining the results of the two models, we add another layer on top of them for joint training. However, we only update the parameters of its LR part, as JYnet is treated as an external, pre-trained model in our implementation.</p>
+                    <a>
+                        <img class="img-responsive" src="img/ICASSP/fig2.png" alt="">
+                    </a>
+
+                    <h2 class="section-heading">Boom! The results</h2>
+                    <p>In order to evaluate the performance of the experiments thoroughly, we apply four evaluation metrics includes recall, NDCG, and some ranking correlation coefficient. However, in this blog post, let me just give you a big picture of the model's capability by simply look into the recall.</p>
+                    <p>Mandarin dataset recall@100:</p>
+                    <p>Random guess: 0.10 </br> Traditional Linear Regression: 0.19 </br> Inception CNN: 0.25 </br> Hybrid joint training: 0.30 </p>
+
+                    <p>What does it mean?</p>
+                    <p>It means that given 1K randomly selected Mandarin songs in the dataset, if you ask our hybrid model to list out the top100 hits, it can get 30 correct prediction.</p>
+
+
+
+                    <blockquote>Li-Chia Yang, Szu-Yu Chou, Jen-Yu Liu, Yi-Hsuan Yang, Yi-An Chen, “Revisiting the problem of audio-based hit song prediction using convolutional neural networks”, Proc. 42nd International Conference on Acoustics, Speech and Signal Processing (ICASSP), New Orleans, USA, March. 2017, accepted.</blockquote>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; RichardYang-TheBlog 2017</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

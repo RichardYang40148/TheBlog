@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RichardYang - The Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Richard Yang - The Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>MGEval - An objective evaluation toolbox for symbolic domain music generation</h1>
+                        <h2 class="subheading">Published as "On the evaluation of generative models in music"
+, in Neural Computing and Applications 2018.</h2>
+                        <span class="meta">Posted on December 27, 2018</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>Generative modeling among creative systems has research interest in a wide variety of tasks. Just as deep learning has reshaped the whole field of artificial intelligence, it has reinvented generative modeling in recent years. However even with the research interest in generative systems, the assessment and evaluation of such systems has proven challenging.</p>
+
+                    <p>In the recent research of music generation, various data-driven models have shown promising results.
+                    As a quick example, here are two generated samples from two distinct system:</p>
+                    <audio controls="">
+                      <source src="audio/MGEval/attention_gen3.mp3" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                    </audio>
+                    <br>
+                    <audio controls="">
+                      <source src="audio/MGEval/lookback_gen3.mp3" type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                    </audio>
+                    
+                    <p>Now, how can we analyze and compare the behavior of these models?</p>
+
+                    <p>As the ultimate judge of creative output is the human (listener or viewer), subjective evaluation is generally preferable in generative modeling. However, the general drawbacks of subjective evaluation can be summarized as various issues related to the required amount of resources and to the experiment design. Yet, objective evaluation plays an important roll of providing a systematic measurement across the significant amount of samples in the data-driven approach.</p>
+                    <h2 class="section-heading">The proposed evaluation strategy</h2>
+
+                    <a>
+                        <img class="img-responsive" src="img/MGEval/flow.pdf" alt="">
+                    </a>
+                    <span class="caption text-muted">General work flow of the proposed method.</span>
+
+                    <p>We propose an evaluation strategy for systems generating symbolic music. The proposed method does not aim at assessing musical pieces in the context of human-level creativity nor does it attempt to model the aesthetic perception of music.</p>
+
+                    <p>It rather applies the concept of multi-criteria evaluation in order to provide metrics that assess basic technical properties of the generated music and help researchers identify issues and specific characteristics of both model and dataset.</p>
+
+                    <p>We first gather two collections of samples as our input datasets (For the application of objective evaluation, one dataset contains generated samples, the other contains samples from the training dataset). We then extract a set of musical domain-knowledge based features for two main targets of the proposed evaluation strategy:</p>
+
+                    <h3 class="post-subtitle">Absolute measurements </h3>
+                    
+                    <p>Absolute measurements give insights into properties and characteristics of a generated or collected set of data.</p>
+
+                    <p>During the model design phase of a generative system, it can be of interest to investigate absolute metrics from the output of different system iterations or of datasets as opposed to a relative evaluation. A typical example is the comparison of the generated results from two generative systems: although the model properties cannot determined precisely for a data-driven approach, the observation of the generated samples can justify or invalidate a system design.</p>
+
+                    <p>For instance, an absolute measurement can be a statistic analysis of note length transition histogram of each sample of a given dataset. In the following figure, we can easily observe the difference of such feature among datasets from two different genre.</p>
+                    <a>
+                        <img class="img-responsive" src="img/MGEval/experiment1_NLTM.pdf" alt="">
+                    </a>
+                    <span class="caption text-muted">Average note length transition matrix (NLTM) of Jazz and Folk music dataset.</span>
+
+                    <h3 class="post-subtitle">Relative measurements</h3>
+
+                    
+
+                    <p>In order to enable the comparison of different sets of data, the relative measure generalizes the result among features with various dimensions.</p>
+
+                    <p>We first perform pairwise exhaustive cross-validation for each feature and smooth the histogram results into probability density functions (PDFs) for a more generalizable representation. If the cross-validation is computed within one set of data, we will refer to it as intra-set distances. If each sample of one set is compared with all samples of the other set, we call it the inter-set distances.</p>
+                	
+                	 <p>Finally, we measures the similarity between these distributions for the application of evaluating music generative systems. Two metrics are computed, the Kullback-Leibler Divergence (KLD) and overlapped area (OA) of two PDFs. We propose to compute the distance between the target dataset’s intra-set PDF and the inter-set PDF.</p>
+                	
+                	<h2 class="section-heading">Use-case demonstration</h2>
+                	<p>Please check our <a target="_blank" href="https://link.springer.com/article/10.1007%2Fs00521-018-3849-7">paper</a> for more details, and the released <a target="_blank" href="https://github.com/RichardYang40148/mgeval">toolbox</a> for further application.</p>
+
+                   
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; RichardYang-TheBlog 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

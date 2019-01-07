@@ -111,11 +111,11 @@
                     </a>
                     <span class="caption text-muted">General work flow of the proposed method.</span>
 
-                    <p>We propose an evaluation strategy for systems generating symbolic music. The proposed method does not aim at assessing musical pieces in the context of human-level creativity nor does it attempt to model the aesthetic perception of music.</p>
+                    <p>The proposed method does not aim at assessing musical pieces in the context of human-level creativity nor does it attempt to model the aesthetic perception of music.</p>
 
                     <p>It rather applies the concept of multi-criteria evaluation in order to provide metrics that assess basic technical properties of the generated music and help researchers identify issues and specific characteristics of both model and dataset.</p>
 
-                    <p>We first gather two collections of samples as our input datasets (For the application of objective evaluation, one dataset contains generated samples, the other contains samples from the training dataset). We then extract a set of musical domain-knowledge based features for two main targets of the proposed evaluation strategy:</p>
+                    <p>For the very first step, we define two collections of samples as our input datasets (For the application of objective evaluation, one dataset contains generated samples, the other contains samples from the training dataset). Then, we extract a set of musical domain-knowledge based features for two main targets of the proposed evaluation strategy:</p>
 
                     <h3 class="post-subtitle">Absolute measurements </h3>
                     
@@ -137,10 +137,17 @@
 
                     <p>We first perform pairwise exhaustive cross-validation for each feature and smooth the histogram results into probability density functions (PDFs) for a more generalizable representation. If the cross-validation is computed within one set of data, we will refer to it as intra-set distances. If each sample of one set is compared with all samples of the other set, we call it the inter-set distances.</p>
                 	
-                	 <p>Finally, we measures the similarity between these distributions for the application of evaluating music generative systems. Two metrics are computed, the Kullback-Leibler Divergence (KLD) and overlapped area (OA) of two PDFs. We propose to compute the distance between the target dataset’s intra-set PDF and the inter-set PDF.</p>
+                	<p>Finally, we measures the similarity between these distributions for the application of evaluating music generative systems, and compute two metrics between the target dataset’s intra-set PDF and the inter-set PDF: the Kullback-Leibler Divergence (KLD) and overlapped area (OA) of two PDFs. </p>
+
+                    <p>Take the following visualized figure as an example: assume set1 is the training data, set2 and set3 correspond to generated results from two systems. The analysis can provide a quick observation that the system generates set2 has a closer behavior in such feature with the training data.</p>
+                    <a>
+                        <img class="img-responsive" src="img/MGEval/example_pdf.pdf" alt="">
+                    </a>
+                    
+
                 	
-                	<h2 class="section-heading">Use-case demonstration</h2>
-                	<p>Please check our <a target="_blank" href="https://link.springer.com/article/10.1007%2Fs00521-018-3849-7">paper</a> for more details, and the released <a target="_blank" href="https://github.com/RichardYang40148/mgeval">toolbox</a> for further application.</p>
+                	<h2 class="section-heading">Check out more details</h2>
+                	<p>Please check our <a target="_blank" href="https://link.springer.com/article/10.1007%2Fs00521-018-3849-7">paper</a> for more details and use-case demonstration, and the released <a target="_blank" href="https://github.com/RichardYang40148/mgeval">toolbox</a> for further application.</p>
 
                    
                 </div>

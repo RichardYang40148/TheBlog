@@ -121,7 +121,7 @@
                     
                     <p>Absolute measurements give insights into properties and characteristics of a generated or collected set of data.</p>
 
-                    <p>During the model design phase of a generative system, it can be of interest to investigate absolute metrics from the output of different system iterations or of datasets as opposed to a relative evaluation. A typical example is the comparison of the generated results from two generative systems: although the model properties cannot determined precisely for a data-driven approach, the observation of the generated samples can justify or invalidate a system design.</p>
+                    <p>During the model design phase of a generative system, it can be of interest to investigate absolute metrics from the output of different system iterations or of datasets as opposed to a relative evaluation. A typical example is the comparison of the generated results from two generative systems: although the model properties cannot be determined precisely for a data-driven approach, the observation of the generated samples can justify or invalidate a system design.</p>
 
                     <p>For instance, an absolute measurement can be a statistic analysis of note length transition histogram of each sample of a given dataset. In the following figure, we can easily observe the difference of such feature among datasets from two different genre.</p>
                     <a>
@@ -137,7 +137,7 @@
 
                     <p>We first perform pairwise exhaustive cross-validation for each feature and smooth the histogram results into probability density functions (PDFs) for a more generalizable representation. If the cross-validation is computed within one set of data, we will refer to it as intra-set distances. If each sample of one set is compared with all samples of the other set, we call it the inter-set distances.</p>
                 	
-                	<p>Finally, we measures the similarity between these distributions for the application of evaluating music generative systems, and compute two metrics between the target dataset’s intra-set PDF and the inter-set PDF: the Kullback-Leibler Divergence (KLD) and overlapped area (OA) of two PDFs. </p>
+                	<p>Finally, we measure the similarity between these distributions for the application of evaluating music generative systems, and compute two metrics between the target dataset’s intra-set PDF and the inter-set PDF: the Kullback-Leibler Divergence (KLD) and overlapped area (OA) of two PDFs. </p>
 
                     <p>Take the following visualized figure as an example: assume set1 is the training data, set2 and set3 correspond to generated results from two systems. The analysis can provide a quick observation that the system generates set2 has a closer behavior in such feature with the training data.</p>
                     <a>
